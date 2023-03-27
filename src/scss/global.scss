@@ -2,12 +2,18 @@
 @import 'components.scss';
 @import 'containers.scss';
 
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.container,
+#root {
+  height: 100%;
+}
+
 .container {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 8px;
-  padding-right: 8px;
-  width: calc(100vw - 1rem);
-  max-width: 1170px;
-  text-align: center;
+  display: grid;
 }
