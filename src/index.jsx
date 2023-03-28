@@ -1,13 +1,10 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
 //import meta image
 import '@/public/assets/images/metaImage.jpg';
 // required for babel polyfills
 import 'regenerator-runtime/runtime';
-//store configuration
-import store from '@/js/store/store';
 //root component
 import App from './App';
 //styles
@@ -19,11 +16,9 @@ const container = document.getElementById('root'),
 
 root.render(
   <StrictMode>
-    <Provider store={store}>
-      <HashRouter>
-        <App />
-      </HashRouter>
-    </Provider>
+    <HashRouter>
+      <App />
+    </HashRouter>
   </StrictMode>
 );
 
