@@ -57,6 +57,8 @@ const ScrollSpy = ({
     [animate, elementOffsetTop]
   );
 
+  // scroll to the given section if we paste
+  // correct URL of a section in the browser
   useEffect(() => {
     if (isFirstLoad) {
       navigate(pathname, { replace: true });
@@ -93,6 +95,10 @@ const ScrollSpy = ({
   useEffect(() => {
     window.addEventListener('scroll', debounceScroll);
 
+    const onLoad = () => {
+      setIsFirstLoad(true);
+    };
+
     const urlExist = new Promise((resolve) => {
       sections.forEach((el) => {
         if (el.id === pathname.replace('/', '')) {
@@ -108,10 +114,7 @@ const ScrollSpy = ({
       // the following condition to make sure that we have scroll
       // animation if we paste correct URL of a section in the browser
       if (pathname !== '/' && value) {
-        window.addEventListener('load', () => {
-          setIsFirstLoad(true);
-          debounceScroll();
-        });
+        window.addEventListener('load', onLoad);
       }
       //navigate to the first section of the app
       else if (pathname === '/' && isNavigateToFirstSectionOnLoad) {
@@ -120,8 +123,8 @@ const ScrollSpy = ({
     });
 
     return () => {
-      // remove the debounceScroll method
       window.removeEventListener('scroll', debounceScroll);
+      window.removeEventListener('load', onLoad);
     };
   }, [sections, navigate, pathname, debounceScroll, isNavigateToFirstSectionOnLoad]);
 
