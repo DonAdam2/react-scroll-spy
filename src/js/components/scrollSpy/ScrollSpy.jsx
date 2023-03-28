@@ -8,14 +8,14 @@ const ScrollSpy = ({
   menuWrapperClassName = '',
   mainContentClassName = '',
 }) => {
-  //used to navigate to required section on app load if section path exist in url
-  const [isFirstLoad, setIsFirstLoad] = useState(false),
+  const navigate = useNavigate(),
+    { pathname } = useLocation(),
+    //used to navigate to required section on app load if section path exist in url
+    [isFirstLoad, setIsFirstLoad] = useState(false),
     debounceTimeoutRef = useRef(null),
     // animation will be applied only if the user click on a menu link not on scrolling
     shouldAnimateRef = useRef(true),
-    scrollDuration = 700,
-    navigate = useNavigate(),
-    { pathname } = useLocation();
+    scrollDuration = 700;
 
   // return the scroll top of the given element
   const elementOffsetTop = useCallback((el) => {
