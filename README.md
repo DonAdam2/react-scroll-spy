@@ -88,23 +88,6 @@ Serves the app on `http://localhost:8080/` from the `dist` folder to check the p
 
 It allows you to analyze the bundle size.
 
-### `yarn test`
-
-It runs all test files.
-
-### `yarn test:watch`
-
-- It runs all unit test files in `/src` directory using watch mode.
-- Will run all your tests once then again on every change of your source code
-
-### `yarn test:coverage`
-
-It runs test coverage.
-
-### `yarn test:clear`
-
-Clears test cache.
-
 ### `yarn generate` **_component_** || **_container_** || **_page_** || **_hook_** || **_service_** || **_reducer_** || **_progressiveWebApp_**
 
 - It creates a boilerplate for component, container, page, custom hook, service, reducer or progressive web app setup.
