@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { update, Tween, Easing } from '@tweenjs/tween.js';
+import { Tween, Easing } from '@tweenjs/tween.js';
 
 const ScrollSpy = ({
   sections = [],
@@ -10,12 +10,13 @@ const ScrollSpy = ({
 }) => {
   const navigate = useNavigate(),
     { pathname } = useLocation(),
-    //used to navigate to required section on app load if section path exist in url
+    // used to navigate to the required section on app load if section path exists in URL
     [isFirstLoad, setIsFirstLoad] = useState(false),
     debounceTimeoutRef = useRef(null),
-    // animation will be applied only if the user click on a menu link not on scrolling
+    // animation will be applied only if the user clicks on a menu link, not on scrolling
     shouldAnimateRef = useRef(true),
-    scrollDuration = 700;
+    scrollDuration = 700,
+    tweenRef = useRef(null);
 
   // return the scroll top of the given element
   const elementOffsetTop = useCallback((el) => {
@@ -27,7 +28,7 @@ const ScrollSpy = ({
   // required function by tweenJS
   const animate = useCallback((time) => {
     requestAnimationFrame(animate);
-    update(time);
+    tweenRef?.current?.update?.(time);
   }, []);
 
   // animate scrolling on menu link click
@@ -38,17 +39,17 @@ const ScrollSpy = ({
 
       if (target) {
         // Create a new tween that modifies 'coords'.
-        new Tween(coords)
+        tweenRef.current = new Tween(coords)
           // Move to top of the clicked element in 700ms.
           .to({ y: elementOffsetTop(target).top + 10 }, scrollDuration)
           // Use an easing function to make the animation smooth.
           .easing(Easing.Quadratic.Out)
-          .onUpdate(function () {
+          .onUpdate(() => {
             // Called after tween.js updates 'coords'.
             // Move 'box' to the position described by 'coords' with a CSS translation.
             window.scrollTo(0, coords.y);
           })
-          // Start tween immediately.
+          // Start the tween immediately.
           .start();
 
         requestAnimationFrame(animate);
@@ -81,7 +82,7 @@ const ScrollSpy = ({
         // push the new link
         navigate(`/${el.id}`, { replace: true });
         // re-enable scroll animation (so that we can have
-        // animation if the user click on a link)
+        // animation if the user clicks on a link)
         shouldAnimateRef.current = true;
       }
     });
@@ -116,7 +117,7 @@ const ScrollSpy = ({
       if (pathname !== '/' && value) {
         window.addEventListener('load', onLoad);
       }
-      //navigate to the first section of the app
+      // navigate to the first section of the app
       else if (pathname === '/' && isNavigateToFirstSectionOnLoad) {
         navigate(`/${sections[0].id}`, { replace: true });
       }
