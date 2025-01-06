@@ -1,3 +1,5 @@
+@use '../generic/variables' as vars;
+
 .main-content {
   width: calc(100% - 50px);
   justify-self: flex-end;
@@ -8,12 +10,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: $blue-gray;
-    color: $white;
+    background-color: vars.$blue-gray;
+    color: vars.$white;
 
     &.transparent {
-      background-color: $white;
-      color: $black;
+      background-color: vars.$white;
+      color: vars.$black;
     }
 
     .inner-section {
@@ -30,7 +32,7 @@
   position: fixed;
   padding: 5px;
   height: 100%;
-  background-color: $black;
+  background-color: vars.$black;
   transition: all 0.3s ease-in-out;
 
   ul {
@@ -40,7 +42,7 @@
   a {
     font-family: 'Droid Sans', serif;
     font-size: 14px;
-    color: $white;
+    color: vars.$white;
     text-decoration: none;
     line-height: 50px;
 
@@ -49,7 +51,7 @@
     }
 
     &.active {
-      color: $yellow;
+      color: vars.$yellow;
 
       &:hover {
         opacity: 1;
