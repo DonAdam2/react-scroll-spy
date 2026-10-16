@@ -4,7 +4,7 @@ This project shows you how to implement scroll spy using react-router-dom v6
 
 ## Prerequisites:
 
-- nodeJS > 14.X.X or Docker
+- nodeJS >= 22.15.0 or Docker
 
 ## Installing / Getting Started:
 

@@ -32,7 +32,6 @@ module.exports = (env, options) => {
           terserOptions: {
             parse: {
               ecma: 2020,
-              warnings: false,
             },
             compress: {
               ecma: 2020,

@@ -14,9 +14,9 @@ module.exports = {
   isCssModules: false,
   metaInfo: {
     //max 60 (recommended)
-    title: 'Adam Morsi',
+    title: 'React scroll spy',
     //max 150 (recommended)
-    description: 'description',
+    description: 'Scroll spy implementation using React and react-router-dom v6',
     keywords: 'add you keywords',
   },
 };
